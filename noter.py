@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from pptx import Presentation
 import glob
-from tika import parser
 
 
 def grab_text():
@@ -22,8 +21,9 @@ def grab_text():
 
 
 def using_tika(filename):
+
+    from tika import parser
     parsed = parser.from_file(filename)
-    # print(parsed["metadata"])
     print(parsed["content"].strip(' '))
     f = open(''.join([filename.strip('.pptx'), '.txt']),
              'w', encoding='utf-8', errors='ignore')
@@ -32,6 +32,9 @@ def using_tika(filename):
 
 
 if __name__ == "__main__":
+    # write txts from powerpoints
+    grab_text()
+
+    # test tika
     # FILENAME = 'Diabetes PPT-1.pptx'
     # using_tika(FILENAME)
-    grab_text()
